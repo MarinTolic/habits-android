@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">habits-android</string>
+    <string name="app_name">Habits</string>
+    <string name="settings">Settings</string>
+
+    <!-- Settings Screen -->
+    <string name="energy_units">Energy Units</string>
+    <string name="kilojoules">kJ (kilojoules)</string>
+    <string name="kiloCalories">kCal (kiloCalories)</string>
+
 </resources>
