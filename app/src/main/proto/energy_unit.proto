@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_package = "com.example.application.proto";
+option java_multiple_files = true;
+
+message EnergyUnit {
+  string name = 1;
+  double joulesConversionRatio = 2;
+  message OrderOfMagnitude {
+    string prefix = 3;
+    int32 orderOfMagnitude = 4;
+  }
+  OrderOfMagnitude orderOfMagnitude = 5;
+}

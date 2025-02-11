@@ -1,4 +1,4 @@
-package com.example.habits_android.ui.theme.ui.screen
+package com.example.habits_android.ui.screen
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding

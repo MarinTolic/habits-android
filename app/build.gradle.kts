@@ -1,7 +1,10 @@
+import com.google.protobuf.gradle.id
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.google.protobuff)
     kotlin("plugin.serialization") version "2.1.10"
 }
 
@@ -52,6 +55,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.ktor.client.core)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.data.store)
+    implementation(libs.protobuf.javalite)
 
     testImplementation(libs.junit)
 
@@ -63,3 +68,27 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
+
+protobuf {
+    protoc {
+        libs.protobuf.protoc
+        // Download from repositories
+        artifact = "com.google.protobuf:protoc:4.29.3"
+    }
+
+    // Generates the java Protobuf-lite code for the Protobufs in this project. See
+    // https://github.com/google/protobuf-gradle-plugin#customizing-protobuf-compilation
+    // for more information.
+    generateProtoTasks {
+        all().forEach { task ->
+            task.builtins {
+                java {
+                   id("java"){
+                       option("lite")
+                   }
+                }
+            }
+        }
+    }
+}
+
