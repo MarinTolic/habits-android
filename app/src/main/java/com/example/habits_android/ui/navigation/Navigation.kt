@@ -4,11 +4,13 @@ import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.habits_android.ui.screen.MainScreen
+import com.example.habits_android.ui.screen.main.MainScreen
 import com.example.habits_android.ui.screen.SettingsScreen
+import com.example.habits_android.viewmodel.MainScreenViewModel
 import kotlinx.serialization.Serializable
 
 /**
@@ -35,7 +37,12 @@ fun Navigation() {
                 )
             }
         ) {
+
+            val mainScreenViewModel =
+                viewModel<MainScreenViewModel>(factory = MainScreenViewModel.factory)
+
             MainScreen(
+                viewModel = mainScreenViewModel,
                 onSettingsClick = { navController.navigate(Route.SettingsScreen) }
             )
         }

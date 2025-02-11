@@ -21,6 +21,7 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "j
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycleRuntimeKtx" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
@@ -30,6 +31,11 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 ktor-client-core ={ group = "io.ktor", name = "ktor-client-core", version.ref = "ktor"}
+ktor-client-okhttp-engine = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor"}
+ktor-client-content-negotiation ={ group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor"}
+ktor-client-serialization-kotlinx-json ={ group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor"}
+
+
 androidx-navigation-compose = { group =  "androidx.navigation", name= "navigation-compose", version.ref = "nav_version" }
 androidx-data-store = { group = "androidx.datastore", name = "datastore", version.ref="data_store_version"}
 protobuf-javalite = { module = "com.google.protobuf:protobuf-javalite", version.ref = "protobuf" }

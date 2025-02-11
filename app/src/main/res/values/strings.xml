@@ -2,9 +2,24 @@
     <string name="app_name">Habits</string>
     <string name="settings">Settings</string>
 
+    <!-- Main Screen -->
+    <string name="name">Name</string>
+    <string name="weight">Weight</string>
+    <string name="energy">Energy</string>
+    <string name="protein">Protein</string>
+    <string name="carbohydrates">Carbohydrates</string>
+    <string name="fat">Fat</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
+
+    <!-- Unit suffixes -->
+    <string name="joules">J</string>
+    <string name="grams">g</string>
+
     <!-- Settings Screen -->
     <string name="energy_units">Energy Units</string>
-    <string name="kilojoules">kJ (kilojoules)</string>
-    <string name="kiloCalories">kCal (kiloCalories)</string>
+    <string name="settings_joules">J (Joules)</string>
+    <string name="settings_kilojoules">kJ (kilojoules)</string>
+    <string name="settings_kiloCalories">kCal (kiloCalories)</string>
 
 </resources>
