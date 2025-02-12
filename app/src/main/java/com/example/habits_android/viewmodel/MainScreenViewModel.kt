@@ -7,18 +7,24 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.habits_android.App
 import com.example.habits_android.model.NutritionalValue
 import com.example.habits_android.model.networking.MealRequest
-import com.example.habits_android.networking.MealsService
-import com.example.habits_android.networking.mealsService
+import com.example.habits_android.repository.MealRepository
 import com.example.habits_android.ui.screen.main.state.MealScreenState
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.plus
 
 /**
  * The ViewModel used for powering the main screen.
+ *
+ * @param mealsRepository The repository used for fetching and storing meal data.
  */
-class MainScreenViewModel(private val mealsService: MealsService) : ViewModel() {
+class MainScreenViewModel(private val mealsRepository: MealRepository) : ViewModel() {
 
     /**
      * The data to be shown to the user, in mutable form.
@@ -31,8 +37,9 @@ class MainScreenViewModel(private val mealsService: MealsService) : ViewModel() 
     val data by _data
 
     init {
+        fetchMeals()
         viewModelScope.launch(Dispatchers.IO) {
-            fetchMeals()
+            mealsRepository.syncDatabase()
         }
     }
 
@@ -40,14 +47,15 @@ class MainScreenViewModel(private val mealsService: MealsService) : ViewModel() 
      * Fetches meal and in case of success sets [data] to the loaded state, otherwise sets it
      * to the error state
      */
-    private suspend fun fetchMeals() {
-        mealsService.getAllMeals()
-            .onFailure {
-                _data.value = MealScreenState.ErrorState(throwable = it)
-            }
-            .onSuccess {
+    private fun fetchMeals() {
+        mealsRepository.getAllMeals()
+            .onEach {
                 _data.value = MealScreenState.LoadedState(meals = it)
             }
+            .catch {
+                _data.value = MealScreenState.ErrorState(throwable = it)
+            }
+            .launchIn(viewModelScope.plus(Dispatchers.IO))
     }
 
     /**
@@ -69,7 +77,7 @@ class MainScreenViewModel(private val mealsService: MealsService) : ViewModel() 
         fat: Int
     ) {
         viewModelScope.launch(Dispatchers.IO) {
-            mealsService.addMeal(
+            mealsRepository.addMeal(
                 MealRequest(
                     name = name,
                     weight = weight,
@@ -81,7 +89,7 @@ class MainScreenViewModel(private val mealsService: MealsService) : ViewModel() 
                     )
                 )
             ).onSuccess {
-                fetchMeals()
+                mealsRepository.syncDatabase()
             }.onFailure {
                 // TODO
             }
@@ -94,7 +102,7 @@ class MainScreenViewModel(private val mealsService: MealsService) : ViewModel() 
          */
         val factory = viewModelFactory {
             initializer {
-                MainScreenViewModel(mealsService = mealsService)
+                MainScreenViewModel(mealsRepository = App.getInstance().mealRepository)
             }
         }
     }

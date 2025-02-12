@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.protobuff)
     kotlin("plugin.serialization") version "2.1.10"
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -60,6 +61,9 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.data.store)
     implementation(libs.protobuf.javalite)
+
+    implementation(libs.androidx.room)
+    ksp(libs.androidx.room.compiler)
 
     testImplementation(libs.junit)
 

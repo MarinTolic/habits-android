@@ -65,5 +65,3 @@ class MealsService {
         response.body<Int>()
     }
 }
-
-val mealsService = MealsService()

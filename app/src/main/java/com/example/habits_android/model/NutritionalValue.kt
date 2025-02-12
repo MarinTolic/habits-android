@@ -16,7 +16,7 @@ data class NutritionalValue(
     val protein: Int,
     val carbohydrates: Int,
     val fat: Int
-){
+) {
     /**
      * Multiplies the nutritional value.
      *
@@ -24,10 +24,10 @@ data class NutritionalValue(
      *
      * @return The original nutritional value multiplied by [multiplier].
      */
-   fun times(multiplier: Int): NutritionalValue = NutritionalValue(
-       energy = this.energy * multiplier,
-       protein = this.protein * multiplier,
-       carbohydrates  = this.carbohydrates * multiplier,
-       fat = this.fat * multiplier,
-   )
+    fun times(multiplier: Int): NutritionalValue = NutritionalValue(
+        energy = this.energy * multiplier,
+        protein = this.protein * multiplier,
+        carbohydrates = this.carbohydrates * multiplier,
+        fat = this.fat * multiplier,
+    )
 }
