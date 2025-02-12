@@ -146,7 +146,7 @@ fun AddMealDialog(
     ) -> Unit
 ) {
     Dialog(
-        onDismissRequest = onDismissRequest
+        onDismissRequest = onDismissRequest,
     ) {
         var name by remember { mutableStateOf("") }
         var weight by remember { mutableStateOf("") }

@@ -1,11 +1,12 @@
 package com.example.habits_android.ui.screen.main
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
@@ -33,7 +34,10 @@ fun MealList(
     meals: List<MealResponse>,
     modifier: Modifier = Modifier,
 ) {
-    LazyColumn(modifier = modifier) {
+    LazyColumn(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(6.dp),
+    ) {
         items(meals, key = { it.uuid }) {
             MealCard(
                 modifier = Modifier.fillMaxWidth(),
@@ -55,8 +59,9 @@ fun MealCard(
     modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = Modifier.padding(12.dp),
-        elevation = CardDefaults.elevatedCardElevation()
+        modifier = Modifier.padding(horizontal = 8.dp),
+        elevation = CardDefaults.elevatedCardElevation(),
+        border = BorderStroke(1.dp, color = MaterialTheme.colorScheme.secondary)
     ) {
         Column(
             modifier = modifier
@@ -75,8 +80,8 @@ fun MealCard(
                     .align(alignment = Alignment.CenterHorizontally)
                     .fillMaxWidth(1f)
                     .padding(vertical = 5.dp)
-                    .width(2.dp),
-                color = MaterialTheme.colorScheme.primary
+                    .height(4.dp),
+                color = MaterialTheme.colorScheme.secondary.copy(alpha = 0.8f)
             )
 
             Column(
